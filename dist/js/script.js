@@ -143,7 +143,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
     class MyCard {
-        constructor(src, alt, title, descr, price, parentSelector) {
+        constructor(src, alt, title, descr, price, parentSelector, ...classes) {
             this.src = src;
             this.alt = alt;
             this.title = title;
@@ -151,6 +151,7 @@ window.addEventListener("DOMContentLoaded", () => {
             this.price = price;
             this.transfer = 27;
             this.chagneToUAH();
+            this.classes = classes;
             this.parent = document.querySelector(parentSelector);
         }
 
@@ -161,8 +162,12 @@ window.addEventListener("DOMContentLoaded", () => {
         render() {
 
             const element = document.createElement('div');
+            if (this.classes.length === 0) {
+                this.element = 'menu__item';
+                element.classList.add(this.element)
+            }
             element.innerHTML = `
-            <div class="menu__item">
+            
             <img src=${this.src} alt=${this.alt}>
             <h3 class="menu__item-subtitle">${this.title}</h3>
             <div class="menu__item-descr">${this.descr}</div>
@@ -171,13 +176,14 @@ window.addEventListener("DOMContentLoaded", () => {
             <div class="menu__item-cost">Цена:</div>
             <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
             </div>
-            </div>
+           
             `;
             this.parent.append(element);
         }
     }
 
     new MyCard(
+
         "img/tabs/vegy.jpg",
         "vegy",
         'Меню "Фитнес"',
@@ -269,51 +275,51 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // console.log(arr);
 
-        // const logs = function (a, b, ...rest) {
-        //     console.log(a, b, rest);
-        // }
+    // const logs = function (a, b, ...rest) {
+    //     console.log(a, b, rest);
+    // }
 
 
-        // logs('akmal', 'sherzod', 'alisher', 'bahodir', 'sherali');
+    // logs('akmal', 'sherzod', 'alisher', 'bahodir', 'sherali');
 
 
 
 
-        // console.log("zapros....");
+    // console.log("zapros....");
 
-        // const req = new Promise(function (resolve, reject) {
+    // const req = new Promise(function (resolve, reject) {
 
-        //     setTimeout(() => {
-        //         console.log('potgotovka...');
+    //     setTimeout(() => {
+    //         console.log('potgotovka...');
 
-        //         const item = {
-        //             name: "iphone",
-        //             price: 1000
+    //         const item = {
+    //             name: "iphone",
+    //             price: 1000
 
-        //         }
-        //         resolve(item)
+    //         }
+    //         resolve(item)
 
-        //     }, 2000)
-        // }).then((item) => {
-        //     return new Promise((resolve, reject) => {
-        //         setTimeout(() => {
-        //             reject(item)
-        //         }, 2000)
-        //     })
+    //     }, 2000)
+    // }).then((item) => {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             reject(item)
+    //         }, 2000)
+    //     })
 
-        // }).then(item => {
-        //     item.modify = true;
-        //     return item;
-        // }).then(item => {
-        //     console.log(item);
-        // }).catch(() => {
-        //     console.error(" error");
-        // }).finally(() => {
-        //     console.log(' finally works!');
-        // })
+    // }).then(item => {
+    //     item.modify = true;
+    //     return item;
+    // }).then(item => {
+    //     console.log(item);
+    // }).catch(() => {
+    //     console.error(" error");
+    // }).finally(() => {
+    //     console.log(' finally works!');
+    // })
 
-        const test = time => {
-            return new Promise(resolve => {
+    const test = time => {
+        return new Promise(resolve => {
             setTimeout(() => resolve(), time)
         });
     }
